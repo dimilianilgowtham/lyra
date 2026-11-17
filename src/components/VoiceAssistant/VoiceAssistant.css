@@ -1,0 +1,15 @@
+.voice-assistant { display: flex; align-items: center; gap: 5px; position: relative; }
+.va-language-select { max-width: 115px; border: 0; border-radius: 8px; background: transparent; color: #b4baac; padding: 6px; font: inherit; font-size: 11px; cursor: pointer; }
+.va-language-select option { color: #e4e9de; background: #20241e; }
+.va-mic-btn { width: 30px; height: 30px; border: 0; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: transparent; color: #b4baac; cursor: pointer; transition: background .15s; }
+.va-mic-btn:hover { color: #d8f6a0; background: #d8f6a00c; }
+.va-mic-btn.listening { background: #fa8f771c; color: #ffb59e; }
+.va-mic-btn.transcribing { background: #d8f6a014; color: #d8f6a0; }
+.va-mic-btn:disabled, .va-language-select:disabled { opacity: .45; cursor: not-allowed; }
+.va-mic-btn:focus-visible, .va-language-select:focus-visible { outline: 2px solid #d8f6a0; outline-offset: 2px; }
+.va-level-meter { width: 6px; height: 17px; border-radius: 3px; background: #fa8f7733; display: flex; align-items: flex-end; overflow: hidden; }
+.va-level-meter span { display: block; width: 100%; min-height: 2px; background: #ffb59e; transition: height 80ms linear; }
+.va-interim, .va-error { position: absolute; z-index: 100; bottom: 42px; right: 0; padding: 10px 12px; border: 1px solid #ffffff1a; border-radius: 10px; background: #22261f; color: #d5dccd; font-size: 12px; box-shadow: 0 8px 28px #0007; }
+.va-interim { min-width: 200px; max-width: 290px; }
+.va-error { width: min(350px, 75vw); display: flex; align-items: flex-start; gap: 10px; color: #ffc0ad; border-color: #fa8f7733; line-height: 1.5; }
+.va-error button { border: 0; background: transparent; color: inherit; cursor: pointer; font-size: 18px; line-height: 1; }

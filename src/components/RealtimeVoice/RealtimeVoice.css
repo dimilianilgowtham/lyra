@@ -1,0 +1,265 @@
+/* ── LYRA — Realtime Voice Panel Styles ─────────────────────────────────── */
+
+.rtv-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* ── Mic Button ────────────────────────────────────────────────────────── */
+
+.rtv-mic-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.25));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.rtv-mic-btn:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(99, 102, 241, 0.4));
+}
+
+.rtv-mic-btn.active {
+  background: linear-gradient(135deg, var(--btn-color, #6366f1), color-mix(in srgb, var(--btn-color, #6366f1), black 20%));
+  box-shadow:
+    0 4px 30px color-mix(in srgb, var(--btn-color, #6366f1) 40%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.rtv-mic-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Pulse ring animation */
+.rtv-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0;
+  animation: rtv-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes rtv-pulse {
+  0%   { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Wave bars */
+.rtv-waves {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+
+.rtv-wave-bar {
+  width: 3px;
+  min-height: 4px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+  animation: rtv-wave-idle 1.2s ease-in-out infinite;
+}
+
+@keyframes rtv-wave-idle {
+  0%, 100% { transform: scaleY(0.6); }
+  50%      { transform: scaleY(1); }
+}
+
+/* ── Conversation Panel ────────────────────────────────────────────────── */
+
+.rtv-conversation {
+  width: 340px;
+  max-height: 420px;
+  background: linear-gradient(165deg, rgba(15, 15, 25, 0.92), rgba(10, 10, 18, 0.96));
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: rtv-slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes rtv-slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Header */
+.rtv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rtv-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rtv-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: rtv-dot-pulse 1.5s ease infinite;
+}
+
+@keyframes rtv-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+.rtv-status {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.02em;
+}
+
+.rtv-close {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.rtv-close:hover {
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Orb */
+.rtv-orb-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.rtv-orb {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 35%,
+    color-mix(in srgb, var(--orb-color, #6366f1), white 30%),
+    var(--orb-color, #6366f1),
+    color-mix(in srgb, var(--orb-color, #6366f1), black 40%)
+  );
+  transform: scale(var(--orb-scale, 1));
+  box-shadow: var(--orb-glow, 0 0 20px rgba(99, 102, 241, 0.3));
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.4s ease;
+}
+
+.rtv-orb.active {
+  animation: rtv-orb-breathe 3s ease-in-out infinite;
+}
+
+@keyframes rtv-orb-breathe {
+  0%, 100% { transform: scale(var(--orb-scale, 1)); }
+  50%      { transform: scale(calc(var(--orb-scale, 1) * 1.05)); }
+}
+
+/* Transcripts */
+.rtv-transcripts {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 200px;
+}
+
+.rtv-transcript {
+  padding: 10px 12px;
+  border-radius: 12px;
+  animation: rtv-fadeIn 0.2s ease;
+}
+
+@keyframes rtv-fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rtv-transcript.user {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.rtv-transcript.assistant {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.rtv-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rtv-transcript p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.rtv-tool-call {
+  font-size: 11px;
+  color: #f59e0b;
+  padding: 6px 10px;
+  background: rgba(245, 158, 11, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+
+.rtv-error {
+  margin: 0 16px 12px;
+  padding: 8px 12px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #fca5a5;
+}

@@ -1,0 +1,2 @@
+# Optional offline speech recognition. Install explicitly with scripts/setup_local_voice.py.
+faster-whisper>=1.1,<2

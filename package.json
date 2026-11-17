@@ -1,0 +1,37 @@
+{
+  "name": "lyra",
+  "productName": "Lyra",
+  "version": "3.0.0",
+  "description": "LYRA \u2014 Personal desktop assistant",
+  "main": "electron.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test:backend": "lyra-backend/.venv/bin/python scripts/test_backend.py",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "node --test scripts/tests/*.test.*",
+    "build:backend": "lyra-backend/.venv/bin/python scripts/build_backend.py",
+    "package:mac": "npm run build && npm run build:backend && node scripts/package_macos.mjs",
+    "install:mac": "lyra-backend/.venv/bin/python scripts/install_macos.py"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.2",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.12.0",
+    "mammoth": "^1.11.0",
+    "marked": "^17.0.4",
+    "pdfjs-dist": "^4.4.168",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "electron": "^42.3.0",
+    "vite": "^5.4.21"
+  }
+}

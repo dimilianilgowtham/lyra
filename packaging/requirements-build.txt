@@ -1,0 +1,2 @@
+# Build only; never needed on the user's Mac after packaging.
+PyInstaller==6.22.3
